@@ -3,17 +3,13 @@ var socket=io();
 socket.on('connect',function(){
     console.log('Connected to the server');
 
-    socket.emit('createMessage',{
-        from:'pratik@gmail.com',
-        text:'Hey..This is Pratik',
 
-    });
 })
 
 
 
-socket.on('newMessage',function(message){
-    console.log('New Message',message);
+socket.on('Broadcast',function(message){
+    console.log('Broadcast Message',message);
 })
 
 /*

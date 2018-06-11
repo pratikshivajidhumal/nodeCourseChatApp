@@ -21,18 +21,25 @@ app.use(express.static(publicPath));
 
 //listen to specific event socket argument in index.html/individual socket
 io.on('connection',(socket)=>{
-//console.log('New user connected');
+console.log('New user connected');
 
-
-    socket.emit('newMessage',{
+//this method emits the event to single user
+   /* socket.emit('newMessage',{
         from:'Pratik@example.com',
         text:'Hey whats up',
         createdAt:123
-    });
+    });*/
 
     socket.on('createMessage',(message)=>{
 
         console.log('createMessage:',message);
+
+        //this method emits the event to every user
+        io.emit('Broadcast', {
+            from:message.from,
+            text:message.text,
+            createdAt:new Date().getTime()
+        }   )
     });
 
 
